@@ -1,5 +1,0 @@
-{
-  "parser": { "label": "shared parser reads day-first dates month first", "issue": "https://github.com/frinux/mega-s01e03-support-kb/issues/1" },
-  "hint": { "label": "booking-v3 form hints MM/DD/YYYY, then reads day first", "issue": "https://github.com/frinux/mega-s01e03-support-kb/issues/2" },
-  "one-day": { "label": "booking moves by one day, not a month", "issue": "https://github.com/frinux/mega-s01e03-support-kb/issues/3" }
-}

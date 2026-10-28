@@ -1,6 +1,6 @@
 # The page as the desk sees it
 
-`src/routes/kb/incidents/4471/problems/+page.svx`, rendered with the kb's own layout and components
+`src/routes/kb/incidents/4471/problems/+page.svx`, rendered with the kb's own layout and components, as exported (the page adds no components of its own)
 (`npm install && npm run build`, SvelteKit + mdsvex, prerendered).
 
 - `kb-incidents-4471-problems.png`: full-page screenshot of `/kb/incidents/4471/problems/` in Chromium.

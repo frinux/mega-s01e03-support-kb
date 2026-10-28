@@ -8,44 +8,53 @@ signature: frinux
 ---
 
 <script>
-  import ProblemTable from '#lib/kb/ProblemTable.svelte';
+  import CauseTable from '#lib/kb/CauseTable.svelte';
   import Callout from '#lib/kb/Callout.svelte';
   import RenderStamp from '#lib/kb/RenderStamp.svelte';
 </script>
 
-[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its reports say
-otherwise. They describe more than one problem, and the parser fix that is queued does not
-reach all of them.
+[#4471](/kb/incidents/4471) is marked known: one issue, one fix queued. Its own cause table
+says otherwise. Rendered, it shows more than one cause, and a footnote for reports that are
+not a month flip at all.
 
 <Callout kind="warn">
-#4471 is not one issue. Each problem below has a ticket of its own, with the reports it covers.
+#4471 is not one issue. Each problem in it now has a ticket of its own, with the reports it
+covers.
 </Callout>
 
-## The problems
+## What the desk's own table shows
 
-<ProblemTable ticket={4471} />
+<CauseTable ticket={4471} />
+
+## The problems, one ticket each
+
+- **The shared parser reads day-first dates month first:
+  [issue #1](https://github.com/frinux/mega-s01e03-support-kb/issues/1).** The `parser` row
+  above, less the reports footnoted under it as a one-day move. Every tenant on file writes
+  the day first; the parser reads the month first, so day and month swap: "Our 7 April
+  reminder went out on 4 July."
+- **The `booking-v3` form hints `MM/DD/YYYY`, then reads the date day first:
+  [issue #2](https://github.com/frinux/mega-s01e03-support-kb/issues/2).** The `hint` row
+  above. The table marks it "no ticket of its own"; it has one now. People type what the hint
+  tells them, month first, and the form reads it the tenant's way. Fixing the parser does not
+  change the hint.
+- **Bookings move by one day, not by a month:
+  [issue #3](https://github.com/frinux/mega-s01e03-support-kb/issues/3).** The reports in the
+  footnote under the table. "Tuesday 6 October showed as Monday." A parser that reads the month
+  first swaps day and month; it cannot move a date by one day. Most likely a time-zone
+  conversion: one report has the same meeting on Tuesday in Lisbon and on Monday in Toronto.
 
 ## How a report is placed
 
-By the desk's own rules: the ones in `causes.ts` that the cause table on #4471 already runs,
-plus the desk's own notes.
+By the desk's own rules, the ones the table above runs (`causes.ts`), plus the desk's own
+notes (`desk-notes.json`):
 
-- **`one-day`**: the desk read the report as a one-day move (`desk-notes.json`). The booking
-  moved by a day, not by a month: "Tuesday 6 October showed as Monday". A parser that reads
-  the month first swaps day and month; it cannot move a date by one day. This is a separate
-  bug, most likely a time-zone conversion: one report has the same meeting on Tuesday in
-  Lisbon and on Monday in Toronto. Like the cause table on #4471, the table above keeps them
-  counted under `parser`, where they are filed, and footnotes them there; `one-day` tracks them
-  as a problem of their own.
-- **`hint`**: the tenant runs `booking-v3` and the report came in through the form. The form
-  prints `MM/DD/YYYY` under its date field, people type the month first, and the form reads
-  the date the tenant's way, day first. Fixing the parser does not change the hint.
-- **`parser`**: every report from a tenant whose locale writes the day first, asked of the
-  platform as `causes.ts` does, that did not come through a `booking-v3` form. The shared
-  parser reads the date month first.
-
-The tenant decides the cause, not the reporter's browser. Intake's tag is a guess made from
-the browser locale; the notes under the table count where it guessed wrong.
+- the tenant decides the cause, not the reporter's browser. Intake's tag is a guess made from
+  the browser locale; the "tagged as" column shows how often it guessed the other cause;
+- a report from a tenant on `booking-v3` that came in through the form is `hint`; every other
+  report from a day-first tenant is `parser`;
+- a report the desk read as a one-day move stays counted where it is filed, and is footnoted
+  there. It is not a month flip, so its ticket is the one-day ticket, not the parser ticket.
 
 ## Why they were merged
 
@@ -57,8 +66,8 @@ the same subject is not the same cause.
 
 ## What changes for the desk
 
-- Ship the parser fix against its own ticket. The `hint` and `one-day` tickets stay open
-  after it ships.
+- Ship the parser fix against its own ticket. The `hint` and one-day tickets stay open after
+  it ships.
 - Send new reports from a `booking-v3` form, and reports of a one-day move, to their own
   tickets, not to #4471.
 - Decision 0001 needs a successor record that places reports by tenant, form and channel,
