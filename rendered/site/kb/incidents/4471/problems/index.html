@@ -9,11 +9,11 @@
 		<link href="../../../../_app/immutable/chunks/B2Ul7l_u.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/BCPXOG7W.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/Dh1V97Jm.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/entry/app.D68p9QW8.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/entry/app.IrpKXhLr.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/nodes/0.BurGglGN.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/DK3Fl9T5.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/nodes/5.C832iTxc.js" rel="modulepreload">
-		<link href="../../../../_app/immutable/chunks/BtDhddv2.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/nodes/5.DiIomM6Q.js" rel="modulepreload">
+		<link href="../../../../_app/immutable/chunks/P4LIiT0T.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/BTPwLomz.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/D_eX76ox.js" rel="modulepreload">
 		<link href="../../../../_app/immutable/chunks/BIy4WKJS.js" rel="modulepreload">
@@ -28,8 +28,7 @@
 says otherwise. Rendered, it shows more than one cause, and a footnote for reports that are
 not a month flip at all.</p> <aside class="warn svelte-17bri61"><!---->#4471 is not one issue. Each problem in it now has a ticket of its own, with the reports it
 covers.<!----></aside><!----> <h2>What the desk’s own table shows</h2> <p class="sum svelte-12oyimm"><strong>412</strong> reports merged into #4471 · <strong>2</strong> causes</p> <table><thead><tr><th>cause</th><th>reports</th><th>tagged as</th><th>tenants</th><th>seen</th><th></th></tr></thead><tbody><!--[--><tr class="svelte-12oyimm"><td class="svelte-12oyimm"><code>parser</code></td><td class="svelte-12oyimm">379</td><td class="tags svelte-12oyimm">parser ×356 · hint ×23</td><td class="svelte-12oyimm">11</td><td class="svelte-12oyimm">2026-04-01 → 2026-10-04</td><td class="svelte-12oyimm">#4471</td></tr><tr class="svelte-12oyimm wrong"><td class="svelte-12oyimm"><code>hint</code></td><td class="svelte-12oyimm">33</td><td class="tags svelte-12oyimm">hint ×18 · parser ×15</td><td class="svelte-12oyimm">3</td><td class="svelte-12oyimm">2026-04-17 → 2026-09-22</td><td class="svelte-12oyimm">not this ticket — no ticket of its own</td></tr><!--]--></tbody></table> <!--[--><!--[0--><p class="note svelte-12oyimm">5 reports read as a one-day move; filed under <code>parser</code> by tenant.</p><!--]--><!--[-1--><!--]--><!--]--><!----> <h2>The problems, one ticket each</h2> <ul><li><strong>The shared parser reads day-first dates month first: <a href="https://github.com/frinux/mega-s01e03-support-kb/issues/1" rel="nofollow">issue #1</a>.</strong> The <code>parser</code> row
-above, counted as the desk counts it: the reports footnoted under it stay there, where they
-are filed, and also have the one-day ticket. Every tenant on file writes
+above, less the reports footnoted under it as a one-day move. Every tenant on file writes
 the day first; the parser reads the month first, so day and month swap: “Our 7 April
 reminder went out on 4 July.”</li> <li><strong>The <code>booking-v3</code> form hints <code>MM/DD/YYYY</code>, then reads the date day first: <a href="https://github.com/frinux/mega-s01e03-support-kb/issues/2" rel="nofollow">issue #2</a>.</strong> The <code>hint</code> row
 above. The table marks it “no ticket of its own”; it has one now. People type what the hint
@@ -41,7 +40,7 @@ conversion: one report has the same meeting on Tuesday in Lisbon and on Monday i
 notes (<code>desk-notes.json</code>):</p> <ul><li>the tenant decides the cause, not the reporter’s browser. Intake’s tag is a guess made from
 the browser locale; the “tagged as” column shows how often it guessed the other cause;</li> <li>a report from a tenant on <code>booking-v3</code> that came in through the form is <code>hint</code>; every other
 report from a day-first tenant is <code>parser</code>;</li> <li>a report the desk read as a one-day move stays counted where it is filed, and is footnoted
-there. It is not a month flip, so it also has the one-day ticket.</li></ul> <h2>Why they were merged</h2> <p><a href="/kb/decisions/0001-dedupe-by-subject">Decision 0001</a> merges reports whose subject lines
+there. It is not a month flip, so its ticket is the one-day ticket, not the parser ticket.</li></ul> <h2>Why they were merged</h2> <p><a href="/kb/decisions/0001-dedupe-by-subject">Decision 0001</a> merges reports whose subject lines
 match. All of these problems arrive under the same subjects: “Wrong day on the invite” and
 “Month and day swapped?” each carry reports of every problem above. Matching on the subject
 cannot keep them apart. The explorer on <a href="/kb/triage/dedupe">triage</a> shows the same thing:
@@ -52,16 +51,16 @@ not by subject. That is a new record, signed by its deciders; 0001 stays as it i
 			
 			<script>
 				{
-					__sveltekit_88kd6i = {
+					__sveltekit_eqh273 = {
 						base: new URL("../../../..", location).pathname.slice(0, -1),
-						version: "1793209880459"
+						version: "1793210705474"
 					};
 
 					const element = document.currentScript.parentElement;
 
 					import("../../../../_app/immutable/entry/start.CH5w6lId.js").then(async (kit) => {
-						kit.init(__sveltekit_88kd6i);
-						const app = await import("../../../../_app/immutable/entry/app.D68p9QW8.js");
+						kit.init(__sveltekit_eqh273);
+						const app = await import("../../../../_app/immutable/entry/app.IrpKXhLr.js");
 						kit.start(app, element, {
 							node_ids: [0, 5],
 							data: [null,null],

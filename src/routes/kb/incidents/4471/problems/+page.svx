@@ -30,8 +30,7 @@ covers.
 
 - **The shared parser reads day-first dates month first:
   [issue #1](https://github.com/frinux/mega-s01e03-support-kb/issues/1).** The `parser` row
-  above, counted as the desk counts it: the reports footnoted under it stay there, where they
-  are filed, and also have the one-day ticket. Every tenant on file writes
+  above, less the reports footnoted under it as a one-day move. Every tenant on file writes
   the day first; the parser reads the month first, so day and month swap: "Our 7 April
   reminder went out on 4 July."
 - **The `booking-v3` form hints `MM/DD/YYYY`, then reads the date day first:
@@ -55,7 +54,7 @@ notes (`desk-notes.json`):
 - a report from a tenant on `booking-v3` that came in through the form is `hint`; every other
   report from a day-first tenant is `parser`;
 - a report the desk read as a one-day move stays counted where it is filed, and is footnoted
-  there. It is not a month flip, so it also has the one-day ticket.
+  there. It is not a month flip, so its ticket is the one-day ticket, not the parser ticket.
 
 ## Why they were merged
 
