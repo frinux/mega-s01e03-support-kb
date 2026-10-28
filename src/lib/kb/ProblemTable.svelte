@@ -41,7 +41,7 @@
         <td>{g.firstSeen} → {g.lastSeen}</td>
         <td>
           {#if filed[g.problem]?.issue}
-            <a href={filed[g.problem].issue}>#{issueNo(filed[g.problem].issue as string)}</a>
+            <a href={filed[g.problem].issue}>issue #{issueNo(filed[g.problem].issue as string)}</a>
           {:else}
             not filed
           {/if}
