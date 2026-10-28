@@ -3,7 +3,7 @@
   import notes from '#lib/data/desk-notes.json';
   import tickets from '#lib/data/tickets-4471.json';
   import { uniqueById, type Report } from '#lib/kb/causes';
-  import { groupByProblem, mistagged } from '#lib/kb/problems';
+  import { mistagged, problemGroups } from '#lib/kb/problems';
   import { tenantOf } from '#lib/kb/locales';
 
   let { ticket }: { ticket: number } = $props();
@@ -12,7 +12,8 @@
   const filed = tickets as Record<string, Filed>;
 
   const merged = $derived(uniqueById(reports as Report[]).filter((r) => r.mergedInto === ticket));
-  const groups = $derived(groupByProblem(merged, tenantOf, notes.oneDayMove));
+  const groups = $derived(problemGroups(merged, tenantOf, notes.oneDayMove));
+  const causes = $derived(groups.filter((g) => g.problem !== 'one-day'));
   const tags = (g: { taggedAs: Record<string, number> }) =>
     Object.entries(g.taggedAs)
       .sort((a, b) => b[1] - a[1])
@@ -26,6 +27,7 @@
   <strong>{groups.length}</strong>
   {groups.length === 1 ? 'problem' : 'problems'}
 </p>
+<p class="note">Counted the way the desk counts: each report under the cause it is filed under.</p>
 
 <table>
   <thead>
@@ -51,6 +53,12 @@
   </tbody>
 </table>
 
+{#each causes as g (g.problem)}
+  {@const moved = g.reports.filter((r) => notes.oneDayMove.includes(r.id)).length}
+  {#if moved}
+    <p class="note">{moved} of the <code>{g.problem}</code> reports read as a one-day move: counted under <code>{g.problem}</code>, where they are filed, and tracked as <code>one-day</code>.</p>
+  {/if}
+{/each}
 {#each groups as g (g.problem)}
   {@const off = mistagged(g)}
   {#if off}

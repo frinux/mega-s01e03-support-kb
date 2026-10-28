@@ -34,13 +34,15 @@ plus the desk's own notes.
   moved by a day, not by a month: "Tuesday 6 October showed as Monday". A parser that reads
   the month first swaps day and month; it cannot move a date by one day. This is a separate
   bug, most likely a time-zone conversion: one report has the same meeting on Tuesday in
-  Lisbon and on Monday in Toronto. The cause table on #4471 counts these under `parser` and
-  footnotes them.
+  Lisbon and on Monday in Toronto. Like the cause table on #4471, the table above keeps them
+  counted under `parser`, where they are filed, and footnotes them there; `one-day` tracks them
+  as a problem of their own.
 - **`hint`**: the tenant runs `booking-v3` and the report came in through the form. The form
   prints `MM/DD/YYYY` under its date field, people type the month first, and the form reads
   the date the tenant's way, day first. Fixing the parser does not change the hint.
-- **`parser`**: every other report from a tenant whose locale writes the day first, asked of
-  the platform as `causes.ts` does. The shared parser reads the date month first.
+- **`parser`**: every report from a tenant whose locale writes the day first, asked of the
+  platform as `causes.ts` does, that did not come through a `booking-v3` form. The shared
+  parser reads the date month first.
 
 The tenant decides the cause, not the reporter's browser. Intake's tag is a guess made from
 the browser locale; the notes under the table count where it guessed wrong.
