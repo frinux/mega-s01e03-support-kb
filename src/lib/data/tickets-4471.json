@@ -1,0 +1,5 @@
+{
+  "parser": { "label": "shared parser reads day-first dates month first", "issue": null },
+  "hint": { "label": "booking-v3 form hints MM/DD/YYYY, then reads day first", "issue": null },
+  "one-day": { "label": "booking moves by one day, not a month", "issue": null }
+}
